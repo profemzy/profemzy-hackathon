@@ -9,22 +9,19 @@ on:
         required: true
 
 env:
-  CLUSTER_NAME: 'us-west1-application'
+  CLUSTER_NAME: 'titans-cluster'
   DOCKER_BUILDKIT: 1
-  ENVIRONMENT: staging
+  ENVIRONMENT: dev
   GCLOUD_VERSION: '349.0.0'
-  GCP_PROJECT: 'dl-flow-devex-staging'
-  IMAGE_URL: us-west1-docker.pkg.dev/dl-flow-devex-staging/backend/profemzy-api
-  REGION: us-west1
+  GCP_PROJECT: 'playground-369107'
+  IMAGE_URL:  europe-west1-docker:pkg.dev/playground-369107/ops
+  REGION: europe-west1
   RELEASE: ${{ inputs.release }}
 
 jobs:
   build:
     name: Build
-    runs-on:
-      # build on CI runner VMs
-      - self-hosted
-      - f-devx
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -38,7 +35,7 @@ jobs:
           project_id: ${{ env.GCP_PROJECT }}
 
       - name: Authenticate docker
-        run: gcloud auth configure-docker us-west1-docker.pkg.dev
+        run: gcloud auth configure-docker europe-west1-docker.pkg.dev
 
       - name: Build and push
         run: make docker-build-and-push
@@ -46,10 +43,7 @@ jobs:
   deploy:
     needs: build
     name: Deploy
-    runs-on:
-      - self-hosted
-      - staging
-      - flow-playground-api-cd
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
