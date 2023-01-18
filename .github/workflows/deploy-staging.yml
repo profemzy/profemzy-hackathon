@@ -3,7 +3,7 @@ name: Dev Deployment
 on:
  push:
    branches:
-     - main
+     - master
 
 env:
   PROJECT_ID: playground-369107
