@@ -28,7 +28,7 @@ jobs:
       - uses: google-github-actions/setup-gcloud@94337306dda8180d967a56932ceb4ddcf01edae7
         with:
           service_account_key: ${{ secrets.GCP_CREDENTIALS }}
-          project_id: $PROJECT_ID
+          project_id: playground-369107
 
       # Configure Docker to use the gcloud command-line tool as a credential
       # helper for authentication
