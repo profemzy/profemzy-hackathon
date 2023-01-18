@@ -67,7 +67,7 @@ spec:
                     version: v1
       containers:
         - name: demo-api
-          image: gcr.io/playground-369107/static-site:927c35c274f0be40d847d8de73093bbdc0d16541
+          image: gcr.io/playground-369107/static-site:v1
           imagePullPolicy: Always
 
           # Ports exposed can be named so other resources can reference

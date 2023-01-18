@@ -9,7 +9,6 @@ env:
   PROJECT_ID: playground-369107
   GKE_CLUSTER: titans-cluster
   GKE_ZONE: europe-west1
-  IMAGE_URL:  europe-west1-docker.pkg.dev/playground-369107/ops/hack
   DEPLOYMENT_NAME: demo-api-v1
   IMAGE: static-site
   REGION: europe-west1
@@ -49,11 +48,14 @@ jobs:
             --build-arg GITHUB_SHA="$GITHUB_SHA" \
             --build-arg GITHUB_REF="$GITHUB_REF" \
             .
+          docker build --tag "gcr.io/$PROJECT_ID/$IMAGE:v1" .
+          
 
       # Push the Docker image to Google Container Registry
       - name: Publish
         run: |-
           docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+          docker push  "gcr.io/$PROJECT_ID/$IMAGE:v1"
 
       # Set up kustomize
       - name: Set up Kustomize
