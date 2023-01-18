@@ -67,7 +67,7 @@ spec:
                     version: v1
       containers:
         - name: demo-api
-          image: europe-west1-docker.pkg.dev/playground-369107/ops/hack:dev
+          image: gcr.io/playground-369107/static-site:927c35c274f0be40d847d8de73093bbdc0d16541
           imagePullPolicy: Always
 
           # Ports exposed can be named so other resources can reference
