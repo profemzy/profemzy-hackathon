@@ -10,7 +10,7 @@ env:
   GKE_CLUSTER: titans-cluster
   GKE_ZONE: europe-west1
   IMAGE_URL:  europe-west1-docker.pkg.dev/playground-369107/ops/hack
-  DEPLOYMENT_NAME: hack
+  DEPLOYMENT_NAME: demo-api-v1
   IMAGE: static-site
   REGION: europe-west1
 
