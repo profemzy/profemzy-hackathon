@@ -1,0 +1,5 @@
+commonLabels:
+  env: dev
+resources:
+  - deployment.yml
+  - ingress.yml
