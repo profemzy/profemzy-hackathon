@@ -7,7 +7,7 @@ docker-build-and-push:
 	docker build \
 		--build-arg VERSION=$(RELEASE) \
 		-t "$(IMAGE_URL):$(RELEASE)" \
-		.#$(RELEASE)
+		.
 
 	docker push "$(IMAGE_URL):$(RELEASE)"
 
