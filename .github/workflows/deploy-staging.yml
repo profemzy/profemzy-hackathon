@@ -50,6 +50,12 @@ jobs:
         with:
           fetch-depth: 1
 
+      - name: 'auth'
+        uses: google-github-actions/auth@v1
+        with:
+          project_id: ${{ env.GCP_PROJECT }}
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+
       - name: Create env.KUBECONFIG
         uses: 'google-github-actions/get-gke-credentials@v1'
         with:
