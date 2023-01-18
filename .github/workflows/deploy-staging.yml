@@ -62,7 +62,6 @@ jobs:
           cluster_name: ${{ env.CLUSTER_NAME }}
           project_id: ${{ env.GCP_PROJECT }}
           location: ${{ env.REGION }}
-          use_internal_ip: true
 
       - name: Apply manifests
         run: make deploy
