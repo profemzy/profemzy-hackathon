@@ -1,5 +1,5 @@
 name: Staging Deployment
-concurrency: deploy-to-staging
+concurrency: deploy-to-dev
 
 on:
   workflow_dispatch:
