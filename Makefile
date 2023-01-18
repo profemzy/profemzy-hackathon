@@ -6,7 +6,8 @@ K8S_YAMLS_LOCATION ?= ./k8s/$(ENVIRONMENT)
 docker-build-and-push:
 	docker build \
 		--build-arg VERSION=$(RELEASE) \
-		-t "$(IMAGE_URL):$(RELEASE)" .
+		-t "$(IMAGE_URL):$(RELEASE)" \
+		.#$(RELEASE)
 
 	docker push "$(IMAGE_URL):$(RELEASE)"
 
