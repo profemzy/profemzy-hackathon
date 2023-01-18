@@ -8,7 +8,7 @@ on:
 env:
   PROJECT_ID: playground-369107
   GKE_CLUSTER: titans-cluster
-  GKE_ZONE: europe-west1-c
+  GKE_ZONE: europe-west1
   IMAGE_URL:  europe-west1-docker.pkg.dev/playground-369107/ops/hack
   DEPLOYMENT_NAME: hack
   IMAGE: static-site
