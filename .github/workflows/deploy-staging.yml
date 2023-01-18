@@ -14,7 +14,7 @@ env:
   ENVIRONMENT: dev
   GCLOUD_VERSION: '349.0.0'
   GCP_PROJECT: 'playground-369107'
-  IMAGE_URL:  europe-west1-docker.pkg.dev/playground-369107/ops
+  IMAGE_URL:  europe-west1-docker.pkg.dev/playground-369107/ops/hack
   REGION: europe-west1
   RELEASE: ${{ inputs.release }}
 
