@@ -9,7 +9,7 @@ docker-build-and-push:
 		-t "$(IMAGE_URL):$(RELEASE)" \
 		.
 
-	docker push "$(IMAGE_URL):$(RELEASE)"
+	docker push "$(IMAGE_URL)/$(RELEASE)"
 
 .PHONY: deploy
 deploy: update-deployment-image apply-manifests
