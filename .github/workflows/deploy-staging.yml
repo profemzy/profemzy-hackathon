@@ -40,23 +40,23 @@ jobs:
       - name: Build and push
         run: make docker-build-and-push
 
-  deploy:
-    needs: build
-    name: Deploy
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
-
-      - name: Create env.KUBECONFIG
-        uses: 'google-github-actions/get-gke-credentials@v0'
-        with:
-          cluster_name: ${{ env.CLUSTER_NAME }}
-          project_id: ${{ env.GCP_PROJECT }}
-          location: ${{ env.REGION }}
-          use_internal_ip: true
-
-      - name: Apply manifests
-        run: make deploy
+#  deploy:
+#    needs: build
+#    name: Deploy
+#    runs-on: ubuntu-latest
+#    steps:
+#      - name: Checkout
+#        uses: actions/checkout@v2
+#        with:
+#          fetch-depth: 1
+#
+#      - name: Create env.KUBECONFIG
+#        uses: 'google-github-actions/get-gke-credentials@v0'
+#        with:
+#          cluster_name: ${{ env.CLUSTER_NAME }}
+#          project_id: ${{ env.GCP_PROJECT }}
+#          location: ${{ env.REGION }}
+#          use_internal_ip: true
+#
+#      - name: Apply manifests
+#        run: make deploy
