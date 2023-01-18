@@ -31,7 +31,6 @@ jobs:
       - name: 'auth'
         uses: google-github-actions/auth@v1
         with:
-          version: ${{ env.GCLOUD_VERSION }}
           project_id: ${{ env.GCP_PROJECT }}
           credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
