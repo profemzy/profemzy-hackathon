@@ -24,12 +24,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: 'actions/checkout@v3'
         with:
           fetch-depth: 1
 
-      - name: Set up gcloud
-        uses: google-github-actions/setup-gcloud@v1
+      - name: 'auth'
+        uses: google-github-actions/auth@v1
         with:
           version: ${{ env.GCLOUD_VERSION }}
           project_id: ${{ env.GCP_PROJECT }}
