@@ -9,4 +9,4 @@ resources:
 
 images:
 - name: gcr.io/playground-369107/static-site
-  newTag: newHash
+  newName: gcr.io/playground-369107/static-site
