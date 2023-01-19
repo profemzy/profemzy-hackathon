@@ -4,6 +4,9 @@ on:
  push:
    branches:
      - master
+ pull_request:
+   branches: master
+ workflow_dispatch:
 
 env:
   PROJECT_ID: playground-369107
@@ -42,17 +45,23 @@ jobs:
 
       # Build the Docker image
       - name: Build
+#        run: |-
+#          docker build \
+#            --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
+#            --build-arg GITHUB_SHA="$GITHUB_SHA" \
+#            --build-arg GITHUB_REF="$GITHUB_REF" \
+#            .
         run: |-
           docker build \
-            --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
-            --build-arg GITHUB_SHA="$GITHUB_SHA" \
-            --build-arg GITHUB_REF="$GITHUB_REF" \
-            .
+            -t "gcr.io/$PROJECT_ID/$IMAGE:latest" 
 
       # Push the Docker image to Google Container Registry
       - name: Publish
+#        run: |-
+#          docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+
         run: |-
-          docker push "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA"
+          docker push "gcr.io/$PROJECT_ID/$IMAGE:latest"
 
       # Set up kustomize
       - name: Set up Kustomize

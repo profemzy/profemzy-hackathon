@@ -67,7 +67,7 @@ spec:
                     version: v1
       containers:
         - name: demo-api
-          image: sanjeevkt720/prometheus-demo
+          image: gcr.io/playground-369107/static-site:latest
           imagePullPolicy: Always
 
           # Ports exposed can be named so other resources can reference
