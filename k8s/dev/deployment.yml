@@ -7,7 +7,6 @@ metadata:
   labels:
     app: demo-api
     kind: web
-    env: dev
     owner: Femi
     version: v1
 
@@ -16,7 +15,6 @@ spec:
   selector:
     matchLabels:
       app: demo-api
-      env: dev
       version: v1
 
   strategy:
@@ -44,7 +42,6 @@ spec:
 
       labels:
         app: demo-api
-        env: dev
         owner: Femi
         version: v1
         kind: web
@@ -67,7 +64,7 @@ spec:
                     version: v1
       containers:
         - name: demo-api
-          image: gcr.io/playground-369107/static-site:latest
+          image: gcr.io/playground-369107/static-site
           imagePullPolicy: Always
 
           # Ports exposed can be named so other resources can reference
