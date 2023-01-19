@@ -64,7 +64,7 @@ spec:
                     version: v1
       containers:
         - name: demo-api
-          image: gcr.io/playground-369107/static-site
+          image: europe-west1-docker.pkg.dev/playground-369107/ops
           imagePullPolicy: Always
 
           # Ports exposed can be named so other resources can reference
