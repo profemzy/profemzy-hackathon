@@ -1,91 +1,47 @@
-## Deployment
-# -----------------------------------------------------------------------------
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-api-v1
   labels:
     app: demo-api
-    kind: web
-    owner: Femi
-    version: v1
-
+  name: demo-api-v1
 spec:
   replicas: 1
   selector:
     matchLabels:
       app: demo-api
-      version: v1
-
   strategy:
-    type: RollingUpdate
     rollingUpdate:
       maxSurge: 50%
       maxUnavailable: 50%
-
+    type: RollingUpdate
   template:
     metadata:
       annotations:
-        # Set to "false" to opt out of prometheus scrapes
-        # Prometheus still needs a port called "metrics" (below) to scrape properly
+        prometheus.io/path: /metrics
         prometheus.io/scrape: "false"
-
-        ###
-        #  TODO
-        #
-        #. NOTE!  This deployment isn't ready to serve metrics yet, and will require
-        #         an nginx Prometheus exporter.
-        ###
-
-        # Set the path to the API endpoint that exposes prometheus metrics, or leave blank for `/metrics`
-        prometheus.io/path: "/metrics"
-
       labels:
         app: demo-api
-        owner: Femi
-        version: v1
-        kind: web
-
     spec:
-      # serviceAccountName: flow-playground-cloud
-      # Affinity keeps your replicas from all being scheduled to
-      # nodes in the same zone. Prevents zonal failures from taking
-      # down your entire service
       affinity:
         podAntiAffinity:
           preferredDuringSchedulingIgnoredDuringExecution:
-            - weight: 1
-              podAffinityTerm:
-                topologyKey: failure-domain.beta.kubernetes.io/zone
-                labelSelector:
-                  matchLabels:
-                    app: demo-api
-                    env: dev
-                    version: v1
+          - podAffinityTerm:
+              labelSelector:
+                matchLabels:
+                  app: demo-api
+              topologyKey: failure-domain.beta.kubernetes.io/zone
+            weight: 1
       containers:
-        - name: demo-api
-          image: europe-west1-docker.pkg.dev/playground-369107/ops
-          imagePullPolicy: Always
-
-          # Ports exposed can be named so other resources can reference
-          # them by name and not have to hard code numbers
-          ports:
-            - name: web
-              containerPort: 80
-
-          # Readiness and Liveness probes
-#          readinessProbe:
-#            initialDelaySeconds: 1
-#            periodSeconds: 10
-#            httpGet:
-#              path: /ping
-#              port: web
-
-          # Resource requests and constraints
-          resources:
-            requests:
-              cpu: "200m" # 0.1 CPUs, or 10% CPU
-              memory: "512Mi"
-            limits:
-              cpu: "800m"
-              memory: "1024Mi"
+      - image: ':'
+        imagePullPolicy: Always
+        name: demo-api
+        ports:
+        - containerPort: 80
+          name: web
+        resources:
+          limits:
+            cpu: 800m
+            memory: 1024Mi
+          requests:
+            cpu: 200m
+            memory: 512Mi
