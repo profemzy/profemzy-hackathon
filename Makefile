@@ -5,11 +5,11 @@ K8S_YAMLS_LOCATION ?= ./k8s/dev
 .PHONY: docker-build
 docker-build-and-push:
 	docker build \
-		--build-arg VERSION=$(RELEASE) \
-		-t "$(IMAGE_URL):$(RELEASE)" \
-		https://github.com/onflow/flow-playground-api.git$(RELEASE)
+		--build-arg VERSION=$GITHUB_SHA\
+		-t "$(IMAGE_URL):$GITHUB_SHA" \
+		https://github.com/profemzy/more-metrics.git
 
-	docker push "$(IMAGE_URL):$(RELEASE)"
+	docker push "$(IMAGE_URL):$GITHUB_SHA"
 
 .PHONY: deploy
 deploy: update-deployment-image apply-manifests

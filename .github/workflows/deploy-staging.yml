@@ -3,10 +3,10 @@ concurrency: deploy-to-dev
 
 on:
   workflow_dispatch:
-    inputs:
-      release:
-        description: Release
-        required: true
+#    inputs:
+#      release:
+#        description: Release
+#        required: true
 
 env:
   CLUSTER_NAME: titans-cluster
@@ -16,7 +16,7 @@ env:
   GCP_PROJECT: 'playground-369107'
   IMAGE_URL:  europe-west1-docker.pkg.dev/playground-369107/ops/hack
   REGION: europe-west1
-  RELEASE: ${{ inputs.release }}
+#  RELEASE: ${{ inputs.release }}
 
 jobs:
   build:
