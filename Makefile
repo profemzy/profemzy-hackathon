@@ -7,7 +7,7 @@ docker-build-and-push:
 	docker build \
 		--build-arg VERSION=$(GITHUB_SHA)\
 		-t "$(IMAGE_URL):$(GITHUB_SHA)" \
-		https://github.com/profemzy/more-metrics.git
+		https://github.com/profemzy/more-metrics.git#$(GITHUB_SHA)
 
 	docker push "$(IMAGE_URL):$(GITHUB_SHA)"
 
