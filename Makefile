@@ -7,7 +7,7 @@ docker-build-and-push:
 	docker build \
 		--build-arg VERSION=$(GITHUB_SHA)\
 		-t "$(IMAGE_URL):$(GITHUB_SHA)" \
-		https://github.com/profemzy/more-metrics.git#$(GITHUB_SHA)
+		https://github.com/profemzy/more-metrics.git\#:docker/centos7 -t orc-centos7
 
 	docker push "$(IMAGE_URL):$(GITHUB_SHA)"
 
